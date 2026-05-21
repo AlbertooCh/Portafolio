@@ -4,7 +4,7 @@ export const portfolioContent = {
       name: "Alberto Chamizo Barrio",
       role: "Desarrollador Backend Junior",
       location: "Extremadura, España",
-      email: "TU_EMAIL_AQUI",
+      email: "albertochamizo05@gmail.com",
       github: "https://github.com/AlbertooCh",
       linkedin: "https://www.linkedin.com/in/alberto-chamizo-barrio-21b605286",
       cv: "/AlbertoChamizoBarrio.pdf",
