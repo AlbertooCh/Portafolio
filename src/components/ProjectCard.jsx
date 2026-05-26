@@ -9,18 +9,46 @@ export default function ProjectCard({ project, labels, isDark }) {
     >
       <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
         <div>
-          <p className="text-sm font-medium text-blue-500">{project.subtitle}</p>
+          <div className="flex flex-wrap items-center gap-3">
+            <p className="text-sm font-medium text-blue-500">
+              {project.subtitle}
+            </p>
 
-          <h3 className={isDark ? "mt-2 text-2xl font-bold text-white" : "mt-2 text-2xl font-bold text-slate-950"}>
+            {project.status && (
+              <span
+                className={
+                  isDark
+                    ? "rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-xs font-semibold text-emerald-300"
+                    : "rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700"
+                }
+              >
+                {project.status}
+              </span>
+            )}
+          </div>
+
+          <h3
+            className={
+              isDark
+                ? "mt-2 text-2xl font-bold text-white"
+                : "mt-2 text-2xl font-bold text-slate-950"
+            }
+          >
             {project.title}
           </h3>
 
-          <p className={isDark ? "mt-4 max-w-3xl leading-7 text-slate-300" : "mt-4 max-w-3xl leading-7 text-slate-600"}>
+          <p
+            className={
+              isDark
+                ? "mt-4 max-w-3xl leading-7 text-slate-300"
+                : "mt-4 max-w-3xl leading-7 text-slate-600"
+            }
+          >
             {project.description}
           </p>
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex shrink-0 gap-3">
           {project.github && (
             <a
               href={project.github}
@@ -51,13 +79,26 @@ export default function ProjectCard({ project, labels, isDark }) {
 
       <div className="mt-6 grid gap-6 lg:grid-cols-[1.3fr_1fr]">
         <div>
-          <h4 className={isDark ? "text-sm font-semibold uppercase tracking-[0.2em] text-slate-400" : "text-sm font-semibold uppercase tracking-[0.2em] text-slate-500"}>
+          <h4
+            className={
+              isDark
+                ? "text-sm font-semibold uppercase tracking-[0.2em] text-slate-400"
+                : "text-sm font-semibold uppercase tracking-[0.2em] text-slate-500"
+            }
+          >
             {labels.highlights}
           </h4>
 
           <ul className="mt-4 space-y-3">
             {project.highlights.map((item) => (
-              <li key={item} className={isDark ? "flex gap-3 text-slate-300" : "flex gap-3 text-slate-600"}>
+              <li
+                key={item}
+                className={
+                  isDark
+                    ? "flex gap-3 text-slate-300"
+                    : "flex gap-3 text-slate-600"
+                }
+              >
                 <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" />
                 <span>{item}</span>
               </li>
@@ -66,7 +107,13 @@ export default function ProjectCard({ project, labels, isDark }) {
         </div>
 
         <div>
-          <h4 className={isDark ? "text-sm font-semibold uppercase tracking-[0.2em] text-slate-400" : "text-sm font-semibold uppercase tracking-[0.2em] text-slate-500"}>
+          <h4
+            className={
+              isDark
+                ? "text-sm font-semibold uppercase tracking-[0.2em] text-slate-400"
+                : "text-sm font-semibold uppercase tracking-[0.2em] text-slate-500"
+            }
+          >
             {labels.techStack}
           </h4>
 

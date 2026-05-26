@@ -5,12 +5,13 @@ export default function Navbar({
   onToggleLanguage,
   onToggleTheme,
 }) {
-  const navItems = [
-    { label: content.nav.about, href: "#about" },
-    { label: content.nav.skills, href: "#skills" },
-    { label: content.nav.projects, href: "#projects" },
-    { label: content.nav.education, href: "#education" },
-  ];
+const navItems = [
+  { label: content.nav.about, href: "#about" },
+  { label: content.nav.cv, href: "#cv" },
+  { label: content.nav.skills, href: "#skills" },
+  { label: content.nav.projects, href: "#projects" },
+  { label: content.nav.education, href: "#education" },
+];
 
   const isDark = theme === "dark";
 

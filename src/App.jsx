@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
+import CVSection from "./components/CVSection";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Education from "./components/Education";
@@ -70,6 +71,7 @@ export default function App() {
       <main>
         <Hero content={content} isDark={isDark} />
         <About content={content} isDark={isDark} />
+        <CVSection content={content} isDark={isDark} />
         <Skills content={content} isDark={isDark} />
         <Projects content={content} isDark={isDark} />
         <Education content={content} isDark={isDark} />
