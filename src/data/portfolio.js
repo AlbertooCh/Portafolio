@@ -2,21 +2,23 @@ export const portfolioContent = {
   es: {
     personalInfo: {
       name: "Alberto Chamizo Barrio",
-      role: "Desarrollador Software Junior",
-      location: "Extremadura, España",
+      role: "Ingeniero Informático de Software",
+      location: "Almendralejo, Badajoz (España)",
       email: "albertochamizo05@gmail.com",
+      phone: "685 608 661",
+      phoneHref: "tel:+34685608661",
       github: "https://github.com/AlbertooCh",
       linkedin: "https://www.linkedin.com/in/alberto-chamizo-barrio-21b605286",
       cv: "/AlbertoChamizoBarrio.pdf",
       formEndpoint: "https://formspree.io/f/maqkoljj",
       summary:
-        "Perfil junior orientado al desarrollo de software, con especial interés en backend, APIs REST, bases de datos, cloud y arquitectura de aplicaciones. Actualmente estoy en la fase final del Grado en Ingeniería Informática del Software y trabajo en proyectos personales para reforzar mi experiencia práctica.",
+        "Ingeniero Informático de Software con perfil junior orientado al desarrollo de software. Experiencia práctica en proyectos académicos y personales con APIs REST, bases de datos SQL, modelado de datos, control de versiones y desarrollo de aplicaciones. Interés en backend, cloud, arquitectura de software y buenas prácticas de desarrollo.",
     },
 
     meta: {
       title: "Alberto Chamizo Barrio | Desarrollador Software Junior",
       description:
-        "Portfolio de Alberto Chamizo Barrio, desarrollador software junior enfocado en Java, Spring Boot, APIs REST, bases de datos, cloud y arquitectura de software.",
+        "Portfolio de Alberto Chamizo Barrio, Ingeniero Informático de Software con perfil junior enfocado en Java, Spring Boot, APIs REST, bases de datos, cloud y arquitectura de software.",
       locale: "es_ES",
     },
 
@@ -42,7 +44,7 @@ export const portfolioContent = {
     },
 
     hero: {
-      badge: "Perfil junior en fase final de Ingeniería Informática del Software",
+      badge: "Graduado en Ingeniería Informática del Software (2026)",
       viewCV: "Ver CV",
       viewProjects: "Ver proyectos",
       focusLabel: "Enfoque",
@@ -58,13 +60,13 @@ export const portfolioContent = {
       eyebrow: "Sobre mí",
       title: "Perfil junior orientado a construir software útil y mantenible",
       description:
-        "Estoy centrando mi perfil en el desarrollo de software, especialmente backend, APIs REST, bases de datos y arquitectura de aplicaciones. Me interesa aprender a construir sistemas claros, mantenibles y adaptados a necesidades reales.",
+        "Terminé el Grado en Ingeniería Informática del Software en 2026 y estoy centrando mi perfil en backend, APIs REST, bases de datos y arquitectura de aplicaciones. Me interesa construir sistemas claros, mantenibles y adaptados a necesidades reales.",
       card1Title: "Qué estoy buscando",
       card1Text:
         "Busco una primera oportunidad junior o trainee donde poder participar en proyectos reales, aprender de equipos con más experiencia y aportar una base técnica sólida en programación, bases de datos y desarrollo backend.",
       card2Title: "Cómo trabajo",
       card2Text:
-        "Me gusta entender las decisiones técnicas, estructurar bien el código y avanzar de forma práctica. Valoro la claridad, la separación de responsabilidades, el control de versiones y la documentación cuando ayuda a mantener el proyecto.",
+        "Me gusta entender las decisiones técnicas, estructurar bien el código y avanzar de forma práctica. Valoro la claridad, la separación de responsabilidades, el control de versiones, las pruebas automáticas y la documentación cuando ayuda a mantener el proyecto.",
     },
 
     cvSection: {
@@ -101,7 +103,7 @@ export const portfolioContent = {
       eyebrow: "Tecnologías",
       title: "Tecnologías con las que trabajo",
       description:
-        "Mi mayor interés está en el desarrollo backend, especialmente Java, Spring Boot, APIs y bases de datos. También tengo conocimientos básicos de frontend para construir y entender aplicaciones web completas.",
+        "Mi mayor interés está en el desarrollo backend, especialmente Java, Spring Boot, APIs y bases de datos. También trabajo con frontend para construir y entender aplicaciones web completas.",
     },
 
     skills: [
@@ -124,11 +126,23 @@ export const portfolioContent = {
       },
       {
         category: "Bases de datos",
-        items: ["MySQL", "PostgreSQL", "Oracle SQL", "MongoDB básico", "Redis básico", "JPQL"],
+        items: ["MySQL", "PostgreSQL", "Oracle SQL", "MongoDB", "Redis", "JPQL"],
+      },
+      {
+        category: "Frontend",
+        items: ["React", "Astro", "Tailwind CSS", "Vite", "HTML", "CSS"],
       },
       {
         category: "Herramientas",
-        items: ["Git", "GitHub", "Docker", "Docker Compose", "Maven", "Gradle", "Postman"],
+        items: [
+          "Git",
+          "GitHub",
+          "Docker",
+          "Docker Compose",
+          "Maven",
+          "Gradle",
+          "Postman",
+        ],
       },
       {
         category: "Testing y documentación",
@@ -136,7 +150,11 @@ export const portfolioContent = {
       },
       {
         category: "Otros",
-        items: ["Linux básico", "OAuth2", "Keycloak", "Cloud en preparación", "Agile/Scrum"],
+        items: ["Linux", "OAuth2", "Keycloak", "Agile/Scrum"],
+      },
+      {
+        category: "Idiomas",
+        items: ["Español (nativo)", "Inglés B2 First"],
       },
     ],
 
@@ -148,17 +166,36 @@ export const portfolioContent = {
       highlights: "Puntos clave",
       techStack: "Tecnologías",
       github: "GitHub",
-      demo: "Demo",
+      demo: "Ver web",
       filters: [
         { label: "Todos", value: "all" },
         { label: "Backend", value: "backend" },
         { label: "Java", value: "java" },
+        { label: "Frontend", value: "frontend" },
         { label: "TFG", value: "tfg" },
         { label: "Microservicios", value: "microservices" },
       ],
     },
 
     projects: [
+      {
+        title: "MyMicroTools",
+        subtitle: "Calculadoras online rápidas y sin registro",
+        status: "En producción",
+        categories: ["frontend"],
+        description:
+          "Proyecto propio en producción: 40 calculadoras y herramientas online repartidas en seis categorías (dinero, casa y consumo, fechas, coches, deporte y porcentajes). Cada herramienta explica de dónde sale el resultado y qué supuestos ha hecho, en lugar de dar un número sin contexto.",
+        highlights: [
+          "Sitio estático construido con Astro y desplegado con rutas por idioma.",
+          "Todos los cálculos se ejecutan en el navegador: ningún dato del usuario sale del dispositivo.",
+          "Más de 270 pruebas automáticas sobre las fórmulas, cubriendo casos límite como años bisiestos, turnos que cruzan medianoche o intereses al 0 %.",
+          "Gráficas en SVG generadas a mano, sin librerías externas ni fuentes descargadas, para minimizar el JavaScript enviado.",
+          "Checklist de diez criterios antes de publicar cada herramienta: cálculo verificado, validación de entradas, móvil, teclado, accesibilidad, rendimiento, metadatos y pruebas.",
+        ],
+        tech: ["Astro", "JavaScript", "HTML", "CSS", "SVG", "SEO", "Testing"],
+        github: "",
+        demo: "https://mymicrotools.com",
+      },
       {
         title: "Aninga",
         subtitle: "Plataforma de seguimiento de anime y manga",
@@ -180,15 +217,16 @@ export const portfolioContent = {
       {
         title: "QCRAFT-Scheduler",
         subtitle: "TFG sobre planificación de circuitos cuánticos",
-        status: "TFG",
+        status: "Completado · Nota 10",
         categories: ["tfg"],
         description:
-          "Trabajo de Fin de Grado centrado en la incorporación de una política noise-aware a un planificador de circuitos cuánticos, con el objetivo de considerar información de ruido del hardware durante el proceso de planificación.",
+          "Trabajo de Fin de Grado centrado en la incorporación de una política noise-aware a un planificador de circuitos cuánticos, con el objetivo de considerar información de ruido del hardware durante el proceso de planificación. Calificado con un 10 y mención a matrícula de honor.",
         highlights: [
           "Extensión de un planificador existente mediante una política noise-aware.",
           "Uso de información de ruido del hardware como criterio de decisión.",
           "Análisis de resultados para comparar el comportamiento de la política añadida.",
           "Documentación técnica del desarrollo como parte del TFG.",
+          "Calificado con un 10 y mención a matrícula de honor.",
         ],
         tech: ["Python", "Scheduling", "Computación cuántica", "Noise-aware", "TFG"],
         github: "https://github.com/AlbertooCh/QCRAFT-Scheduler",
@@ -224,10 +262,10 @@ export const portfolioContent = {
     education: [
       {
         title: "Grado en Ingeniería Informática del Software",
-        institution: "Universidad de Extremadura",
+        institution: "Universidad de Extremadura (Cáceres)",
         period: "2021 - 2026",
         description:
-          "En fase final del grado, pendiente de defensa del TFG. Formación orientada a desarrollo software, bases de datos, ingeniería web, modelado, sistemas, redes y arquitectura de aplicaciones.",
+          "Grado finalizado, con Trabajo de Fin de Grado calificado con un 10 y mención a matrícula de honor. Formación orientada a desarrollo software, bases de datos, ingeniería web, modelado, sistemas, redes y arquitectura de aplicaciones.",
       },
     ],
 
@@ -240,11 +278,11 @@ export const portfolioContent = {
 
     experience: [
       {
-        title: "Socorrista de temporada",
+        title: "Socorrista en instalaciones acuáticas",
         company: "Ayuntamiento de Almendralejo",
         period: "jun. 2025 - oct. 2025",
         description:
-          "Experiencia laboral basada en responsabilidad directa, atención al público, vigilancia preventiva, cumplimiento de protocolos de seguridad y trabajo en equipo.",
+          "Atención al público, vigilancia preventiva y aplicación de protocolos de seguridad, con responsabilidad directa y trabajo en equipo.",
       },
     ],
 
@@ -289,6 +327,11 @@ export const portfolioContent = {
         value: "albertochamizo05@gmail.com",
         href: "mailto:albertochamizo05@gmail.com",
       },
+      {
+        label: "Teléfono",
+        value: "685 608 661",
+        href: "tel:+34685608661",
+      },
     ],
 
     footer: {
@@ -299,21 +342,23 @@ export const portfolioContent = {
   en: {
     personalInfo: {
       name: "Alberto Chamizo Barrio",
-      role: "Junior Software Developer",
-      location: "Extremadura, Spain",
+      role: "Software Engineer",
+      location: "Almendralejo, Badajoz (Spain)",
       email: "albertochamizo05@gmail.com",
+      phone: "+34 685 608 661",
+      phoneHref: "tel:+34685608661",
       github: "https://github.com/AlbertooCh",
       linkedin: "https://www.linkedin.com/in/alberto-chamizo-barrio-21b605286",
-      cv: "/AlbertoChamizoBarrio.pdf",
+      cv: "/AlbertoChamizoBarrio-EN.pdf",
       formEndpoint: "https://formspree.io/f/maqkoljj",
       summary:
-        "Junior profile focused on software development, with a strong interest in backend, REST APIs, databases, cloud and application architecture. I am currently in the final stage of my Software Engineering degree and building personal projects to strengthen my practical experience.",
+        "Junior Software Engineer with a background in software development. Practical experience in academic and personal projects using REST APIs, SQL databases, data modeling, version control and application development. Interested in backend development, cloud computing, software architecture and best development practices.",
     },
 
     meta: {
       title: "Alberto Chamizo Barrio | Junior Software Developer",
       description:
-        "Portfolio of Alberto Chamizo Barrio, junior software developer focused on Java, Spring Boot, REST APIs, databases, cloud and software architecture.",
+        "Portfolio of Alberto Chamizo Barrio, Software Engineer with a junior profile focused on Java, Spring Boot, REST APIs, databases, cloud and software architecture.",
       locale: "en_US",
     },
 
@@ -339,7 +384,7 @@ export const portfolioContent = {
     },
 
     hero: {
-      badge: "Junior profile in the final stage of a Software Engineering degree",
+      badge: "Software Engineering graduate (2026)",
       viewCV: "View CV",
       viewProjects: "View projects",
       focusLabel: "Focus",
@@ -355,13 +400,13 @@ export const portfolioContent = {
       eyebrow: "About",
       title: "Junior profile focused on building useful and maintainable software",
       description:
-        "I am building my profile around software development, especially backend, REST APIs, databases and application architecture. I am interested in learning how to build clear, maintainable systems adapted to real needs.",
+        "I completed my Software Engineering degree in 2026 and I am building my profile around backend development, REST APIs, databases and application architecture. I am interested in building clear, maintainable systems adapted to real needs.",
       card1Title: "What I am looking for",
       card1Text:
         "I am looking for a junior or trainee opportunity where I can work on real software projects, learn from more experienced teams and contribute a solid technical foundation in programming, databases and backend development.",
       card2Title: "How I work",
       card2Text:
-        "I like understanding technical decisions, structuring code properly and moving forward in a practical way. I value clarity, separation of responsibilities, version control and documentation when it helps maintain a project.",
+        "I like understanding technical decisions, structuring code properly and moving forward in a practical way. I value clarity, separation of responsibilities, version control, automated tests and documentation when it helps maintain a project.",
     },
 
     cvSection: {
@@ -398,7 +443,7 @@ export const portfolioContent = {
       eyebrow: "Skills",
       title: "Technologies I work with",
       description:
-        "My strongest interest is backend development, especially Java, Spring Boot, APIs and databases. I also have basic frontend knowledge to build and understand complete web applications.",
+        "My strongest interest is backend development, especially Java, Spring Boot, APIs and databases. I also work with frontend to build and understand complete web applications.",
     },
 
     skills: [
@@ -421,11 +466,23 @@ export const portfolioContent = {
       },
       {
         category: "Databases",
-        items: ["MySQL", "PostgreSQL", "Oracle SQL", "MongoDB basics", "Redis basics", "JPQL"],
+        items: ["MySQL", "PostgreSQL", "Oracle SQL", "MongoDB", "Redis", "JPQL"],
+      },
+      {
+        category: "Frontend",
+        items: ["React", "Astro", "Tailwind CSS", "Vite", "HTML", "CSS"],
       },
       {
         category: "Tools",
-        items: ["Git", "GitHub", "Docker", "Docker Compose", "Maven", "Gradle", "Postman"],
+        items: [
+          "Git",
+          "GitHub",
+          "Docker",
+          "Docker Compose",
+          "Maven",
+          "Gradle",
+          "Postman",
+        ],
       },
       {
         category: "Testing and documentation",
@@ -433,7 +490,11 @@ export const portfolioContent = {
       },
       {
         category: "Other",
-        items: ["Linux basics", "OAuth2", "Keycloak", "Cloud in progress", "Agile/Scrum"],
+        items: ["Linux", "OAuth2", "Keycloak", "Agile/Scrum"],
+      },
+      {
+        category: "Spoken languages",
+        items: ["Spanish (native)", "English B2 First"],
       },
     ],
 
@@ -445,17 +506,36 @@ export const portfolioContent = {
       highlights: "Highlights",
       techStack: "Tech stack",
       github: "GitHub",
-      demo: "Demo",
+      demo: "Visit site",
       filters: [
         { label: "All", value: "all" },
         { label: "Backend", value: "backend" },
         { label: "Java", value: "java" },
+        { label: "Frontend", value: "frontend" },
         { label: "Final Degree Project", value: "tfg" },
         { label: "Microservices", value: "microservices" },
       ],
     },
 
     projects: [
+      {
+        title: "MyMicroTools",
+        subtitle: "Fast online calculators, no sign-up required",
+        status: "Live",
+        categories: ["frontend"],
+        description:
+          "My own project, live in production: 40 online calculators and tools across six categories (money, home and energy, dates, cars, sport and percentages). Every tool explains where the result comes from and which assumptions it made, instead of returning a number without context.",
+        highlights: [
+          "Static site built with Astro and deployed with per-language routes.",
+          "Every calculation runs in the browser: no user data ever leaves the device.",
+          "More than 270 automated tests over the formulas, covering edge cases such as leap years, shifts crossing midnight or 0% interest rates.",
+          "Hand-written SVG charts, with no external libraries or downloaded fonts, to keep the shipped JavaScript minimal.",
+          "A ten-point checklist before publishing each tool: verified calculation, input validation, mobile, keyboard, accessibility, performance, metadata and tests.",
+        ],
+        tech: ["Astro", "JavaScript", "HTML", "CSS", "SVG", "SEO", "Testing"],
+        github: "",
+        demo: "https://mymicrotools.com",
+      },
       {
         title: "Aninga",
         subtitle: "Anime and manga tracking platform",
@@ -477,15 +557,16 @@ export const portfolioContent = {
       {
         title: "QCRAFT-Scheduler",
         subtitle: "Final degree project on quantum circuit scheduling",
-        status: "Final Degree Project",
+        status: "Completed · Graded 10",
         categories: ["tfg"],
         description:
-          "Final Degree Project focused on incorporating a noise-aware policy into a quantum circuit scheduler, with the goal of considering hardware noise information during the scheduling process.",
+          "Final Degree Project focused on incorporating a noise-aware policy into a quantum circuit scheduler, with the goal of considering hardware noise information during the scheduling process. Graded 10 out of 10 with honours.",
         highlights: [
           "Extension of an existing scheduler through a noise-aware policy.",
           "Use of hardware noise information as a decision criterion.",
           "Result analysis to compare the behaviour of the added policy.",
           "Technical documentation of the development as part of the final degree project.",
+          "Graded 10 out of 10 with honours.",
         ],
         tech: ["Python", "Scheduling", "Quantum Computing", "Noise-aware", "Final Degree Project"],
         github: "https://github.com/AlbertooCh/QCRAFT-Scheduler",
@@ -520,11 +601,11 @@ export const portfolioContent = {
 
     education: [
       {
-        title: "Software Engineering Degree",
-        institution: "University of Extremadura",
+        title: "Bachelor's Degree in Computer Software Engineering",
+        institution: "Universidad de Extremadura (Cáceres)",
         period: "2021 - 2026",
         description:
-          "Final stage of the degree, pending final degree project defense. Education focused on software development, databases, web engineering, modelling, systems, networks and application architecture.",
+          "Degree completed, with a Final Degree Project graded 10 out of 10 with honours. Education focused on software development, databases, web engineering, modelling, systems, networks and application architecture.",
       },
     ],
 
@@ -537,11 +618,11 @@ export const portfolioContent = {
 
     experience: [
       {
-        title: "Seasonal Lifeguard",
-        company: "Almendralejo City Council",
+        title: "Lifeguard at aquatic facilities",
+        company: "Ayuntamiento de Almendralejo",
         period: "Jun. 2025 - Oct. 2025",
         description:
-          "Work experience based on direct responsibility, public attention, preventive supervision, compliance with safety protocols and teamwork.",
+          "Customer service, preventive surveillance and application of safety protocols, with direct responsibility and teamwork.",
       },
     ],
 
@@ -585,6 +666,11 @@ export const portfolioContent = {
         label: "Email",
         value: "albertochamizo05@gmail.com",
         href: "mailto:albertochamizo05@gmail.com",
+      },
+      {
+        label: "Phone",
+        value: "+34 685 608 661",
+        href: "tel:+34685608661",
       },
     ],
 

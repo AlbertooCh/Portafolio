@@ -49,7 +49,7 @@ Inicio · Sobre mí · CV · Tecnologías · Proyectos · Formación · Experien
 ## Estructura del proyecto
 
 ```
-public/              CV en PDF, favicon, imagen Open Graph, robots y sitemap
+public/              CV en PDF (ES/EN), favicon, imagen Open Graph, robots y sitemap
 src/
   assets/            Imágenes importadas por el bundle
   components/        Componentes de UI (uno por sección + primitivas)
