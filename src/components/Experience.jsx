@@ -8,7 +8,7 @@ export default function Experience({ content }) {
         {content.experience.map((item, index) => (
           <Reveal
             as="article"
-            key={item.title}
+            key={`${item.company}-${item.period}`}
             delay={index * 60}
             className="surface p-6"
           >

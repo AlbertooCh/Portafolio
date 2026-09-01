@@ -273,10 +273,17 @@ export const portfolioContent = {
       eyebrow: "Experiencia",
       title: "Experiencia laboral",
       description:
-        "Aunque busco mi primera oportunidad en desarrollo software, mi experiencia laboral previa me ha ayudado a desarrollar responsabilidad, comunicación y trabajo en equipo.",
+        "Aunque busco mi primera oportunidad en desarrollo software, mi experiencia laboral me ha ayudado a desarrollar responsabilidad, comunicación y trabajo en equipo.",
     },
 
     experience: [
+      {
+        title: "Socorrista en instalaciones acuáticas",
+        company: "Ayuntamiento de Almendralejo",
+        period: "jul. 2026 - actualidad",
+        description:
+          "Temporada actual, compaginando el trabajo con el desarrollo de proyectos propios de software y la búsqueda de mi primera oportunidad en desarrollo.",
+      },
       {
         title: "Socorrista en instalaciones acuáticas",
         company: "Ayuntamiento de Almendralejo",
@@ -613,10 +620,17 @@ export const portfolioContent = {
       eyebrow: "Experience",
       title: "Work experience",
       description:
-        "Although I am looking for my first software development opportunity, previous work experience has helped me build responsibility, communication and teamwork habits.",
+        "Although I am looking for my first software development opportunity, my work experience has helped me build responsibility, communication and teamwork habits.",
     },
 
     experience: [
+      {
+        title: "Lifeguard at aquatic facilities",
+        company: "Ayuntamiento de Almendralejo",
+        period: "Jul. 2026 - Present",
+        description:
+          "Current season, combined with building my own software projects and looking for my first opportunity in software development.",
+      },
       {
         title: "Lifeguard at aquatic facilities",
         company: "Ayuntamiento de Almendralejo",

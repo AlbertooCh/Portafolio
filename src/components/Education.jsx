@@ -8,7 +8,7 @@ export default function Education({ content }) {
         {content.education.map((item, index) => (
           <Reveal
             as="article"
-            key={item.title}
+            key={`${item.institution}-${item.period}`}
             delay={index * 60}
             className="surface p-6"
           >
