@@ -30,6 +30,8 @@ Todo el contenido está disponible en **español e inglés** y la interfaz sopor
   `schema.org/Person`, `sitemap.xml` y `robots.txt`.
 - **Formulario de contacto** contra Formspree, con trampa antispam y endpoint
   configurable por variables de entorno.
+- **Analítica** con Vercel Web Analytics, sin cookies. Solo envía datos desde
+  el despliegue; en local se queda en modo depuración.
 
 ## Tecnologías
 
@@ -40,6 +42,7 @@ Todo el contenido está disponible en **español e inglés** y la interfaz sopor
 | Estilos       | Tailwind CSS 4 (`@tailwindcss/vite`)    |
 | Calidad       | ESLint 10 (flat config)                 |
 | Formulario    | Formspree                               |
+| Analítica     | Vercel Web Analytics                    |
 | Despliegue    | Vercel                                  |
 
 ## Secciones
@@ -119,6 +122,10 @@ El proyecto se despliega en Vercel a partir de la rama `main`:
 
 Cada push a `main` y cada pull request ejecutan además lint y build en GitHub
 Actions ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)).
+
+La analítica requiere activar **Web Analytics** en el proyecto de Vercel
+(pestaña *Analytics*). Hasta entonces el componente se monta pero no registra
+visitas.
 
 ## Contacto
 

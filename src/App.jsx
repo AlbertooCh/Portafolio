@@ -1,4 +1,5 @@
 import { useCallback, useMemo } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -101,6 +102,9 @@ export default function App() {
 
       <Footer content={content} />
       <BackToTop label={content.ui.backToTop} />
+
+      {/* Analítica de Vercel: sin cookies, solo se activa en el despliegue. */}
+      <Analytics />
     </div>
   );
 }
