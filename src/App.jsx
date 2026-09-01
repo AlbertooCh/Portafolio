@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -9,55 +9,75 @@ import Education from "./components/Education";
 import Experience from "./components/Experience";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import BackToTop from "./components/BackToTop";
+import { usePersistentState } from "./hooks/usePersistentState";
+import { useDocumentMeta } from "./hooks/useDocumentMeta";
 import { portfolioContent } from "./data/portfolio";
 
-const DEFAULT_LANGUAGE = "es";
-const DEFAULT_THEME = "dark";
+const LANGUAGES = ["es", "en"];
+const THEMES = ["light", "dark"];
+
+const isLanguage = (value) => LANGUAGES.includes(value);
+const isTheme = (value) => THEMES.includes(value);
+
+/** Idioma inicial: el del navegador si lo tenemos traducido, si no español. */
+function detectLanguage() {
+  const preferred = window.navigator.languages ?? [window.navigator.language];
+
+  for (const tag of preferred) {
+    const code = String(tag).slice(0, 2).toLowerCase();
+    if (isLanguage(code)) return code;
+  }
+
+  return "es";
+}
+
+/** Tema inicial: el que pida el sistema operativo. */
+function detectTheme() {
+  return window.matchMedia?.("(prefers-color-scheme: light)").matches
+    ? "light"
+    : "dark";
+}
 
 export default function App() {
-  const [language, setLanguage] = useState(() => {
-    return localStorage.getItem("portfolio-language") || DEFAULT_LANGUAGE;
-  });
+  const [language, setLanguage] = usePersistentState(
+    "portfolio-language",
+    detectLanguage,
+    isLanguage
+  );
 
-  const [theme, setTheme] = useState(() => {
-    return localStorage.getItem("portfolio-theme") || DEFAULT_THEME;
-  });
+  const [theme, setTheme] = usePersistentState(
+    "portfolio-theme",
+    detectTheme,
+    isTheme
+  );
 
   const content = useMemo(() => portfolioContent[language], [language]);
-  const isDark = theme === "dark";
 
-  useEffect(() => {
-    localStorage.setItem("portfolio-language", language);
-    document.documentElement.lang = language;
-  }, [language]);
+  useDocumentMeta({ language, theme, meta: content.meta });
 
-  useEffect(() => {
-    localStorage.setItem("portfolio-theme", theme);
-    document.documentElement.classList.toggle("dark", isDark);
-  }, [theme, isDark]);
+  const toggleLanguage = useCallback(
+    () => setLanguage((current) => (current === "es" ? "en" : "es")),
+    [setLanguage]
+  );
 
-  const toggleLanguage = () => {
-    setLanguage((current) => (current === "es" ? "en" : "es"));
-  };
-
-  const toggleTheme = () => {
-    setTheme((current) => (current === "dark" ? "light" : "dark"));
-  };
+  const toggleTheme = useCallback(
+    () => setTheme((current) => (current === "dark" ? "light" : "dark")),
+    [setTheme]
+  );
 
   return (
-    <div
-      className={
-        isDark
-          ? "min-h-screen bg-slate-950 text-slate-100"
-          : "min-h-screen bg-slate-50 text-slate-900"
-      }
-    >
+    <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:rounded-full focus:bg-accent-500 focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-white"
+      >
+        {content.ui.skipToContent}
+      </a>
+
       <div
-        className={
-          isDark
-            ? "fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.18),_transparent_35%),radial-gradient(circle_at_top_right,_rgba(16,185,129,0.12),_transparent_30%)]"
-            : "fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.16),_transparent_35%),radial-gradient(circle_at_top_right,_rgba(16,185,129,0.10),_transparent_30%)]"
-        }
+        aria-hidden="true"
+        className="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.16),_transparent_35%),radial-gradient(circle_at_top_right,_rgba(16,185,129,0.10),_transparent_30%)] dark:bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.18),_transparent_35%),radial-gradient(circle_at_top_right,_rgba(16,185,129,0.12),_transparent_30%)]"
       />
 
       <Navbar
@@ -68,18 +88,19 @@ export default function App() {
         onToggleTheme={toggleTheme}
       />
 
-      <main>
-        <Hero content={content} isDark={isDark} />
-        <About content={content} isDark={isDark} />
-        <CVSection content={content} isDark={isDark} />
-        <Skills content={content} isDark={isDark} />
-        <Projects content={content} isDark={isDark} />
-        <Education content={content} isDark={isDark} />
-        <Experience content={content} isDark={isDark} />
-        <Contact content={content} isDark={isDark} />
+      <main id="main">
+        <Hero content={content} />
+        <About content={content} />
+        <CVSection content={content} />
+        <Skills content={content} />
+        <Projects content={content} />
+        <Education content={content} />
+        <Experience content={content} />
+        <Contact content={content} />
       </main>
 
-      <Footer content={content} isDark={isDark} />
+      <Footer content={content} />
+      <BackToTop label={content.ui.backToTop} />
     </div>
   );
 }

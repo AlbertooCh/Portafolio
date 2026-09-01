@@ -12,6 +12,17 @@ dist
 dist-ssr
 *.local
 
+# Variables de entorno
+.env
+.env.local
+.env.*.local
+
+# Despliegue
+.vercel
+
+# Herramientas locales
+.claude/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -22,3 +33,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Empaquetados
+*.zip

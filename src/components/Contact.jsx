@@ -1,5 +1,6 @@
 import { useState } from "react";
 import SectionTitle from "./SectionTitle";
+import { GithubIcon, MailIcon } from "./Icons";
 
 const initialForm = {
   name: "",
@@ -8,38 +9,44 @@ const initialForm = {
   message: "",
 };
 
-export default function Contact({ content, isDark }) {
+const inputClass =
+  "w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-950 transition outline-none placeholder:text-slate-400 focus:border-accent-500 dark:border-white/10 dark:bg-slate-950/60 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-accent-400";
+
+const labelClass =
+  "mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300";
+
+export default function Contact({ content }) {
   const { contactSection, contactLinks, personalInfo } = content;
+
+  const placeholders = contactSection.placeholders;
 
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState("idle");
   const [feedback, setFeedback] = useState("");
 
-  const inputClass = isDark
-    ? "w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-blue-400"
-    : "w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-blue-500";
-
-  const labelClass = isDark
-    ? "mb-2 block text-sm font-medium text-slate-300"
-    : "mb-2 block text-sm font-medium text-slate-700";
+  // El endpoint puede sobrescribirse por entorno sin tocar el código.
+  const formEndpoint =
+    import.meta.env.VITE_FORM_ENDPOINT || personalInfo.formEndpoint;
 
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    setForm((current) => ({
-      ...current,
-      [name]: value,
-    }));
+    setForm((current) => ({ ...current, [name]: value }));
+
+    if (status === "error") {
+      setStatus("idle");
+      setFeedback("");
+    }
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!personalInfo.formEndpoint || personalInfo.formEndpoint.includes("TU_FORM_ID")) {
+    const formElement = event.currentTarget;
+
+    if (!formEndpoint || formEndpoint.includes("TU_FORM_ID")) {
       setStatus("error");
-      setFeedback(
-        "Falta configurar el endpoint de Formspree en src/data/portfolio.js."
-      );
+      setFeedback(contactSection.formConfigError);
       return;
     }
 
@@ -47,22 +54,18 @@ export default function Contact({ content, isDark }) {
     setFeedback("");
 
     try {
-      const response = await fetch(personalInfo.formEndpoint, {
+      const response = await fetch(formEndpoint, {
         method: "POST",
-        headers: {
-          Accept: "application/json",
-        },
-        body: new FormData(event.currentTarget),
+        headers: { Accept: "application/json" },
+        body: new FormData(formElement),
       });
 
-      if (!response.ok) {
-        throw new Error("Form submission failed");
-      }
+      if (!response.ok) throw new Error(`Request failed: ${response.status}`);
 
       setStatus("success");
       setFeedback(contactSection.formSuccess);
       setForm(initialForm);
-    } catch (error) {
+    } catch {
       setStatus("error");
       setFeedback(contactSection.formError);
     }
@@ -70,60 +73,42 @@ export default function Contact({ content, isDark }) {
 
   return (
     <section id="contact" className="mx-auto max-w-6xl px-5 py-20">
-      <div
-        className={
-          isDark
-            ? "rounded-3xl border border-blue-400/20 bg-blue-400/[0.06] p-7 md:p-10"
-            : "rounded-3xl border border-blue-200 bg-blue-50 p-7 md:p-10"
-        }
-      >
+      <div className="rounded-3xl border border-accent-200 bg-accent-50 p-7 md:p-10 dark:border-accent-400/20 dark:bg-accent-400/[0.06]">
         <SectionTitle
           eyebrow={contactSection.eyebrow}
           title={contactSection.title}
           description={contactSection.description}
-          isDark={isDark}
         />
 
         <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
           <div>
-            <div className="grid gap-4">
-              {contactLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target={link.href.startsWith("http") ? "_blank" : undefined}
-                  rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-                  className={
-                    isDark
-                      ? "rounded-2xl border border-white/10 bg-slate-950/60 p-5 transition hover:border-blue-300/40 hover:bg-slate-900"
-                      : "rounded-2xl border border-blue-100 bg-white p-5 shadow-sm transition hover:border-blue-300 hover:shadow-md"
-                  }
-                >
-                  <p
-                    className={
-                      isDark ? "text-sm text-slate-400" : "text-sm text-slate-500"
-                    }
-                  >
-                    {link.label}
-                  </p>
-                  <p
-                    className={
-                      isDark
-                        ? "mt-2 break-words font-semibold text-white"
-                        : "mt-2 break-words font-semibold text-slate-950"
-                    }
-                  >
-                    {link.value}
-                  </p>
-                </a>
-              ))}
-            </div>
+            <ul className="grid gap-4">
+              {contactLinks.map((link) => {
+                const isExternal = link.href.startsWith("http");
+
+                return (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      target={isExternal ? "_blank" : undefined}
+                      rel={isExternal ? "noreferrer" : undefined}
+                      className="block rounded-2xl border border-accent-100 bg-white p-5 shadow-sm transition hover:border-accent-300 hover:shadow-md dark:border-white/10 dark:bg-slate-950/60 dark:shadow-none dark:hover:border-accent-300/40 dark:hover:bg-slate-900"
+                    >
+                      <span className="text-sm text-slate-500 dark:text-slate-400">
+                        {link.label}
+                      </span>
+                      <span className="mt-2 block break-words font-semibold text-slate-950 dark:text-white">
+                        {link.value}
+                      </span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
 
             <div className="mt-8 flex flex-wrap gap-4">
-              <a
-                href={`mailto:${personalInfo.email}`}
-                className="rounded-full bg-blue-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-400"
-              >
+              <a href={`mailto:${personalInfo.email}`} className="btn-primary">
+                <MailIcon className="h-4 w-4" />
                 {contactSection.sendEmail}
               </a>
 
@@ -131,12 +116,9 @@ export default function Contact({ content, isDark }) {
                 href={personalInfo.github}
                 target="_blank"
                 rel="noreferrer"
-                className={
-                  isDark
-                    ? "rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-slate-200 transition hover:border-white/30 hover:bg-white/5"
-                    : "rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-white"
-                }
+                className="btn-ghost"
               >
+                <GithubIcon className="h-4 w-4" />
                 {contactSection.viewGithub}
               </a>
             </div>
@@ -144,11 +126,7 @@ export default function Contact({ content, isDark }) {
 
           <form
             onSubmit={handleSubmit}
-            className={
-              isDark
-                ? "rounded-3xl border border-white/10 bg-slate-950/60 p-5 md:p-6"
-                : "rounded-3xl border border-blue-100 bg-white p-5 shadow-sm md:p-6"
-            }
+            className="rounded-3xl border border-accent-100 bg-white p-5 shadow-sm md:p-6 dark:border-white/10 dark:bg-slate-950/60 dark:shadow-none"
           >
             <input type="hidden" name="_subject" value={form.subject} />
 
@@ -167,7 +145,7 @@ export default function Contact({ content, isDark }) {
                   minLength={2}
                   autoComplete="name"
                   className={inputClass}
-                  placeholder="Alberto"
+                  placeholder={placeholders.name}
                 />
               </div>
 
@@ -184,7 +162,7 @@ export default function Contact({ content, isDark }) {
                   required
                   autoComplete="email"
                   className={inputClass}
-                  placeholder="tu@email.com"
+                  placeholder={placeholders.email}
                 />
               </div>
 
@@ -201,7 +179,7 @@ export default function Contact({ content, isDark }) {
                   required
                   minLength={3}
                   className={inputClass}
-                  placeholder="Oferta junior backend"
+                  placeholder={placeholders.subject}
                 />
               </div>
 
@@ -218,34 +196,38 @@ export default function Contact({ content, isDark }) {
                   minLength={10}
                   rows={6}
                   className={`${inputClass} resize-none`}
-                  placeholder="Escribe aquí tu mensaje..."
+                  placeholder={placeholders.message}
                 />
               </div>
 
+              {/* Trampa antispam: los bots la rellenan, las personas no la ven. */}
               <input
                 type="text"
                 name="_gotcha"
-                tabIndex="-1"
+                tabIndex={-1}
                 autoComplete="off"
+                aria-hidden="true"
                 className="hidden"
               />
 
-              {feedback && (
-                <p
-                  className={
-                    status === "success"
-                      ? "rounded-2xl border border-emerald-400/30 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-500"
-                      : "rounded-2xl border border-red-400/30 bg-red-400/10 px-4 py-3 text-sm text-red-500"
-                  }
-                >
-                  {feedback}
-                </p>
-              )}
+              <p
+                role="status"
+                aria-live="polite"
+                className={
+                  feedback
+                    ? status === "success"
+                      ? "rounded-2xl border border-emerald-400/30 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-600 dark:text-emerald-400"
+                      : "rounded-2xl border border-red-400/30 bg-red-400/10 px-4 py-3 text-sm text-red-600 dark:text-red-400"
+                    : "sr-only"
+                }
+              >
+                {feedback}
+              </p>
 
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className="rounded-full bg-blue-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition hover:bg-blue-400 disabled:cursor-not-allowed disabled:opacity-60"
+                className="btn-primary"
               >
                 {status === "sending"
                   ? contactSection.formSending

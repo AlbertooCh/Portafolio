@@ -1,41 +1,27 @@
-import SectionTitle from "./SectionTitle";
+import Reveal from "./Reveal";
+import Section from "./Section";
 
-export default function About({ content, isDark }) {
+export default function About({ content }) {
   const { about } = content;
 
   return (
-    <section id="about" className="mx-auto max-w-6xl px-5 py-20">
-      <SectionTitle
-        eyebrow={about.eyebrow}
-        title={about.title}
-        description={about.description}
-        isDark={isDark}
-      />
-
+    <Section id="about" heading={about}>
       <div className="grid gap-6 md:grid-cols-2">
-        <AboutCard title={about.card1Title} text={about.card1Text} isDark={isDark} />
-        <AboutCard title={about.card2Title} text={about.card2Text} isDark={isDark} />
+        <AboutCard title={about.card1Title} text={about.card1Text} />
+        <AboutCard title={about.card2Title} text={about.card2Text} delay={80} />
       </div>
-    </section>
+    </Section>
   );
 }
 
-function AboutCard({ title, text, isDark }) {
+function AboutCard({ title, text, delay }) {
   return (
-    <div
-      className={
-        isDark
-          ? "rounded-3xl border border-white/10 bg-white/[0.03] p-7"
-          : "rounded-3xl border border-slate-200 bg-white p-7 shadow-sm"
-      }
-    >
-      <h3 className={isDark ? "text-xl font-semibold text-white" : "text-xl font-semibold text-slate-950"}>
+    <Reveal as="article" delay={delay} className="surface p-7">
+      <h3 className="text-xl font-semibold text-slate-950 dark:text-white">
         {title}
       </h3>
 
-      <p className={isDark ? "mt-4 leading-7 text-slate-300" : "mt-4 leading-7 text-slate-600"}>
-        {text}
-      </p>
-    </div>
+      <p className="mt-4 leading-7 text-slate-600 dark:text-slate-300">{text}</p>
+    </Reveal>
   );
 }

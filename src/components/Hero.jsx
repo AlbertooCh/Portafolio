@@ -1,61 +1,37 @@
-import profileImage from "../assets/profile.png";
+import profileImage from "../assets/profile.webp";
+import { GithubIcon, LinkedinIcon } from "./Icons";
 
-export default function Hero({ content, isDark }) {
+export default function Hero({ content }) {
   const { personalInfo, hero } = content;
 
   return (
-    <section className="mx-auto grid min-h-[calc(100vh-74px)] max-w-6xl items-center gap-12 px-5 py-20 lg:grid-cols-[1.2fr_0.8fr]">
+    <section
+      id="top"
+      className="mx-auto grid min-h-[calc(100vh-74px)] max-w-6xl items-center gap-12 px-5 py-20 lg:grid-cols-[1.2fr_0.8fr]"
+    >
       <div>
-        <p
-          className={
-            isDark
-              ? "mb-5 inline-flex rounded-full border border-blue-400/30 bg-blue-400/10 px-4 py-2 text-sm font-medium text-blue-300"
-              : "mb-5 inline-flex rounded-full border border-blue-500/30 bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700"
-          }
-        >
+        <p className="mb-5 inline-flex rounded-full border border-accent-500/30 bg-accent-50 px-4 py-2 text-sm font-medium text-accent-700 dark:border-accent-400/30 dark:bg-accent-400/10 dark:text-accent-300">
           {hero.badge}
         </p>
 
-        <h1
-          className={
-            isDark
-              ? "text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-7xl"
-              : "text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl md:text-7xl"
-          }
-        >
+        <h1 className="text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl md:text-7xl dark:text-white">
           {personalInfo.name}
         </h1>
 
-        <h2 className="mt-5 text-2xl font-semibold text-blue-500 sm:text-3xl">
+        <p className="mt-5 text-2xl font-semibold text-accent-500 sm:text-3xl">
           {personalInfo.role}
-        </h2>
+        </p>
 
-        <p
-          className={
-            isDark
-              ? "mt-6 max-w-2xl text-lg leading-8 text-slate-300"
-              : "mt-6 max-w-2xl text-lg leading-8 text-slate-600"
-          }
-        >
+        <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">
           {personalInfo.summary}
         </p>
 
         <div className="mt-9 flex flex-wrap gap-4">
-          <a
-            href="#cv"
-            className="rounded-full bg-blue-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition hover:bg-blue-400"
-          >
+          <a href="#cv" className="btn-primary">
             {hero.viewCV}
           </a>
 
-          <a
-            href="#projects"
-            className={
-              isDark
-                ? "rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-slate-200 transition hover:border-white/30 hover:bg-white/5"
-                : "rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-100"
-            }
-          >
+          <a href="#projects" className="btn-ghost">
             {hero.viewProjects}
           </a>
 
@@ -63,12 +39,9 @@ export default function Hero({ content, isDark }) {
             href={personalInfo.github}
             target="_blank"
             rel="noreferrer"
-            className={
-              isDark
-                ? "rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-slate-200 transition hover:border-white/30 hover:bg-white/5"
-                : "rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-100"
-            }
+            className="btn-ghost"
           >
+            <GithubIcon className="h-4 w-4" />
             GitHub
           </a>
 
@@ -76,67 +49,38 @@ export default function Hero({ content, isDark }) {
             href={personalInfo.linkedin}
             target="_blank"
             rel="noreferrer"
-            className={
-              isDark
-                ? "rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-slate-200 transition hover:border-white/30 hover:bg-white/5"
-                : "rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-100"
-            }
+            className="btn-ghost"
           >
+            <LinkedinIcon className="h-4 w-4" />
             LinkedIn
           </a>
         </div>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-3">
-          <InfoBox
-            label={hero.focusLabel}
-            value={hero.focusValue}
-            isDark={isDark}
-          />
-          <InfoBox
-            label={hero.stackLabel}
-            value={hero.stackValue}
-            isDark={isDark}
-          />
-          <InfoBox
-            label={hero.locationLabel}
-            value={personalInfo.location}
-            isDark={isDark}
-          />
-        </div>
+        <dl className="mt-10 grid gap-4 sm:grid-cols-3">
+          <InfoBox label={hero.focusLabel} value={hero.focusValue} />
+          <InfoBox label={hero.stackLabel} value={hero.stackValue} />
+          <InfoBox label={hero.locationLabel} value={personalInfo.location} />
+        </dl>
       </div>
 
-      <div
-        className={
-          isDark
-            ? "relative mx-auto w-full max-w-sm rounded-[2rem] border border-white/10 bg-white/[0.03] p-4 shadow-2xl shadow-blue-950/40"
-            : "relative mx-auto w-full max-w-sm rounded-[2rem] border border-slate-200 bg-white p-4 shadow-xl"
-        }
-      >
+      <div className="relative mx-auto w-full max-w-sm rounded-[2rem] border border-slate-200 bg-white p-4 shadow-xl dark:border-white/10 dark:bg-white/[0.03] dark:shadow-2xl dark:shadow-accent-950/40">
         <div className="overflow-hidden rounded-[1.5rem]">
           <img
             src={profileImage}
             alt={personalInfo.name}
+            width={760}
+            height={967}
+            fetchPriority="high"
+            decoding="async"
             className="h-full w-full object-cover"
           />
         </div>
 
-        <div
-          className={
-            isDark
-              ? "absolute -bottom-6 left-6 right-6 rounded-2xl border border-white/10 bg-slate-950/90 p-4 shadow-xl backdrop-blur"
-              : "absolute -bottom-6 left-6 right-6 rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-xl backdrop-blur"
-          }
-        >
-          <p className="text-sm font-semibold text-blue-500">
+        <div className="absolute right-6 -bottom-6 left-6 rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-xl backdrop-blur dark:border-white/10 dark:bg-slate-950/90">
+          <p className="text-sm font-semibold text-accent-500">
             {hero.statusLabel}
           </p>
-          <p
-            className={
-              isDark
-                ? "mt-1 text-sm text-slate-300"
-                : "mt-1 text-sm text-slate-600"
-            }
-          >
+          <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
             {hero.statusValue}
           </p>
         </div>
@@ -145,31 +89,13 @@ export default function Hero({ content, isDark }) {
   );
 }
 
-function InfoBox({ label, value, isDark }) {
+function InfoBox({ label, value }) {
   return (
-    <div
-      className={
-        isDark
-          ? "rounded-2xl border border-white/10 bg-white/[0.03] p-4"
-          : "rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"
-      }
-    >
-      <p
-        className={
-          isDark ? "text-sm text-slate-400" : "text-sm text-slate-500"
-        }
-      >
-        {label}
-      </p>
-      <p
-        className={
-          isDark
-            ? "mt-1 font-semibold text-white"
-            : "mt-1 font-semibold text-slate-950"
-        }
-      >
+    <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-white/[0.03] dark:shadow-none">
+      <dt className="text-sm text-slate-500 dark:text-slate-400">{label}</dt>
+      <dd className="mt-1 font-semibold text-slate-950 dark:text-white">
         {value}
-      </p>
+      </dd>
     </div>
   );
 }

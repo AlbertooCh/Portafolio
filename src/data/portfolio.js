@@ -13,12 +13,31 @@ export const portfolioContent = {
         "Perfil junior orientado al desarrollo de software, con especial interés en backend, APIs REST, bases de datos, cloud y arquitectura de aplicaciones. Actualmente estoy en la fase final del Grado en Ingeniería Informática del Software y trabajo en proyectos personales para reforzar mi experiencia práctica.",
     },
 
+    meta: {
+      title: "Alberto Chamizo Barrio | Desarrollador Software Junior",
+      description:
+        "Portfolio de Alberto Chamizo Barrio, desarrollador software junior enfocado en Java, Spring Boot, APIs REST, bases de datos, cloud y arquitectura de software.",
+      locale: "es_ES",
+    },
+
+    ui: {
+      skipToContent: "Saltar al contenido principal",
+      openMenu: "Abrir menú de navegación",
+      closeMenu: "Cerrar menú de navegación",
+      switchToLight: "Cambiar a tema claro",
+      switchToDark: "Cambiar a tema oscuro",
+      switchLanguage: "Ver la web en inglés",
+      backToTop: "Volver arriba",
+      scrollProgress: "Progreso de lectura",
+    },
+
     nav: {
       about: "Sobre mí",
       cv: "CV",
       skills: "Tecnologías",
       projects: "Proyectos",
       education: "Formación",
+      experience: "Experiencia",
       contact: "Contacto",
     },
 
@@ -244,6 +263,14 @@ export const portfolioContent = {
       formSending: "Enviando...",
       formSuccess: "Mensaje enviado correctamente. Te responderé lo antes posible.",
       formError: "No se ha podido enviar el mensaje. Prueba otra vez o escríbeme por email.",
+      formConfigError:
+        "El formulario aún no está configurado. Escríbeme directamente por email.",
+      placeholders: {
+        name: "Tu nombre",
+        email: "tu@email.com",
+        subject: "Oferta junior backend",
+        message: "Escribe aquí tu mensaje...",
+      },
     },
 
     contactLinks: [
@@ -283,12 +310,31 @@ export const portfolioContent = {
         "Junior profile focused on software development, with a strong interest in backend, REST APIs, databases, cloud and application architecture. I am currently in the final stage of my Software Engineering degree and building personal projects to strengthen my practical experience.",
     },
 
+    meta: {
+      title: "Alberto Chamizo Barrio | Junior Software Developer",
+      description:
+        "Portfolio of Alberto Chamizo Barrio, junior software developer focused on Java, Spring Boot, REST APIs, databases, cloud and software architecture.",
+      locale: "en_US",
+    },
+
+    ui: {
+      skipToContent: "Skip to main content",
+      openMenu: "Open navigation menu",
+      closeMenu: "Close navigation menu",
+      switchToLight: "Switch to light theme",
+      switchToDark: "Switch to dark theme",
+      switchLanguage: "View this site in Spanish",
+      backToTop: "Back to top",
+      scrollProgress: "Reading progress",
+    },
+
     nav: {
       about: "About",
       cv: "CV",
       skills: "Skills",
       projects: "Projects",
       education: "Education",
+      experience: "Experience",
       contact: "Contact",
     },
 
@@ -514,6 +560,14 @@ export const portfolioContent = {
       formSending: "Sending...",
       formSuccess: "Message sent successfully. I will reply as soon as possible.",
       formError: "The message could not be sent. Please try again or contact me by email.",
+      formConfigError:
+        "The contact form is not configured yet. Please email me directly.",
+      placeholders: {
+        name: "Your name",
+        email: "you@email.com",
+        subject: "Junior backend role",
+        message: "Write your message here...",
+      },
     },
 
     contactLinks: [

@@ -1,8 +1,8 @@
 import { useMemo, useState } from "react";
-import SectionTitle from "./SectionTitle";
 import ProjectCard from "./ProjectCard";
+import Section from "./Section";
 
-export default function Projects({ content, isDark }) {
+export default function Projects({ content }) {
   const [activeFilter, setActiveFilter] = useState("all");
 
   const filteredProjects = useMemo(() => {
@@ -14,15 +14,12 @@ export default function Projects({ content, isDark }) {
   }, [activeFilter, content.projects]);
 
   return (
-    <section id="projects" className="mx-auto max-w-6xl px-5 py-20">
-      <SectionTitle
-        eyebrow={content.projectsSection.eyebrow}
-        title={content.projectsSection.title}
-        description={content.projectsSection.description}
-        isDark={isDark}
-      />
-
-      <div className="mb-8 flex flex-wrap gap-3">
+    <Section id="projects" heading={content.projectsSection}>
+      <div
+        role="tablist"
+        aria-label={content.projectsSection.title}
+        className="mb-8 flex flex-wrap gap-3"
+      >
         {content.projectsSection.filters.map((filter) => {
           const isActive = activeFilter === filter.value;
 
@@ -30,13 +27,13 @@ export default function Projects({ content, isDark }) {
             <button
               key={filter.value}
               type="button"
+              role="tab"
+              aria-selected={isActive}
               onClick={() => setActiveFilter(filter.value)}
               className={
                 isActive
-                  ? "rounded-full bg-blue-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-500/20"
-                  : isDark
-                    ? "rounded-full border border-white/15 px-4 py-2 text-sm font-semibold text-slate-300 transition hover:border-white/30 hover:bg-white/5"
-                    : "rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-100"
+                  ? "rounded-full bg-accent-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-accent-500/20"
+                  : "rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-100 dark:border-white/15 dark:text-slate-300 dark:hover:border-white/30 dark:hover:bg-white/5"
               }
             >
               {filter.label}
@@ -51,10 +48,9 @@ export default function Projects({ content, isDark }) {
             key={project.title}
             project={project}
             labels={content.projectsSection}
-            isDark={isDark}
           />
         ))}
       </div>
-    </section>
+    </Section>
   );
 }
